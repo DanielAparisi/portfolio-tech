@@ -17,6 +17,8 @@ import PythonIcon from "../icons/Python.astro";
 
 import GmailIcon from "../icons/Gmail.astro";
 import LinkedinIcon from "../icons/Linkedin.astro";
+import GithubIcon from "../icons/Github.astro";
+import FiverrIcon from "../icons/Fiverr.astro";
 
 // Endpoint de FormSubmit.co (gratis, sin backend). El primer envío
 // llega a tu correo con un enlace de confirmación que debes aceptar una vez.
@@ -35,6 +37,20 @@ const contacts = [
     value: "Daniel Aparisi Lozano",
     href: profile.linkedin,
     Icon: LinkedinIcon,
+    external: true,
+  },
+  {
+    label: "GitHub",
+    value: "@" + profile.github.replace(/\/+$/, "").split("/").pop(),
+    href: profile.github,
+    Icon: GithubIcon,
+    external: true,
+  },
+  {
+    label: "Fiverr",
+    value: "Contrátame en Fiverr",
+    href: profile.fiverr,
+    Icon: FiverrIcon,
     external: true,
   },
 ];
@@ -94,7 +110,7 @@ const stackIcons: Record<string, typeof AstroIcon> = {
       </section>
 
       <!-- ══════════════ SOBRE MÍ ══════════════ -->
-      <section class="mt-20">
+      <section class="cv-auto mt-20">
         <p id="sobre-mi" class="mb-4 text-sm text-prompt scroll-mt-28">
           /* sobre-mi.md */
         </p>
@@ -115,7 +131,7 @@ const stackIcons: Record<string, typeof AstroIcon> = {
       </section>
 
       <!-- ══════════════ STACK ══════════════ -->
-      <section class="mt-20">
+      <section class="cv-auto mt-20">
         <CommandLabel id="stack" command="cat stack.json" />
         <ul class="grid grid-cols-4 gap-3 sm:gap-4 md:grid-cols-8">
           {
@@ -133,7 +149,7 @@ const stackIcons: Record<string, typeof AstroIcon> = {
       </section>
 
       <!-- ══════════════ PROYECTOS ══════════════ -->
-      <section class="mt-20">
+      <section class="cv-auto mt-20">
         <CommandLabel id="proyectos" command="ls ./proyectos --github" />
         <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {
@@ -186,7 +202,7 @@ const stackIcons: Record<string, typeof AstroIcon> = {
       </section>
 
       <!-- ══════════════ EDUCACIÓN ══════════════ -->
-      <section class="mt-20">
+      <section class="cv-auto mt-20">
         <CommandLabel id="educacion" command="cat educacion.log" />
         <div class="space-y-4">
           {
@@ -214,7 +230,7 @@ const stackIcons: Record<string, typeof AstroIcon> = {
       <!-- ══════════════ CONTACTO / FOOTER ══════════════ -->
       <footer
         id="contacto"
-        class="mt-20 scroll-mt-28 border-t border-line pt-12"
+        class="cv-auto mt-20 scroll-mt-28 border-t border-line pt-12"
       >
         <CommandLabel command="./contacto --send" />
 
@@ -308,7 +324,6 @@ const stackIcons: Record<string, typeof AstroIcon> = {
 
           <!-- Vías directas -->
           <div class="reveal lg:col-span-2">
-            <p class="text-sm text-prompt">&gt; O directamente</p>
             <div class="mt-6 space-y-3">
               {
                 contacts.map(({ label, value, href, Icon, external }) => (
@@ -348,7 +363,7 @@ const stackIcons: Record<string, typeof AstroIcon> = {
         <div class="mt-12 border-t border-line pt-6 text-xs text-muted">
           <p>
             <span class="text-prompt">daniel@portfolio</span><span> ~$</span> echo
-            "© {new Date().getFullYear()}
+            © {new Date().getFullYear()}
             {profile.name}
           </p>
         </div>

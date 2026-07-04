@@ -9,6 +9,7 @@ export const profile = {
 	email: 'daniel.aparisi.lozano@gmail.com',
 	github: 'https://github.com/DanielAparisi',
 	linkedin: 'https://www.linkedin.com/in/daniel-aparisi-lozano-600367276/',
+	fiverr: 'https://es.fiverr.com/daniel_aparisi',
 };
 
 export const about = [
