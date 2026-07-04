@@ -133,12 +133,12 @@ const stackIcons: Record<string, typeof AstroIcon> = {
       <!-- ══════════════ STACK ══════════════ -->
       <section class="cv-auto mt-20">
         <CommandLabel id="stack" command="cat stack.json" />
-        <ul class="grid grid-cols-4 gap-3 sm:gap-4 md:grid-cols-8">
+        <ul class="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 md:grid-cols-8">
           {
             stack.map((tech) => {
               const Icon = stackIcons[tech];
               return (
-                <li class="reveal flex flex-col items-center gap-2.5 rounded-lg border border-line bg-surface p-4 transition-all hover:-translate-y-1 hover:border-accent/60 hover:bg-surface-hover">
+                <li class="reveal flex flex-col items-center gap-2.5 rounded-lg border border-line bg-surface p-3 transition-all hover:-translate-y-1 hover:border-accent/60 hover:bg-surface-hover sm:p-4">
                   {Icon && <Icon class="h-9 w-9" aria-hidden="true" />}
                   <span class="text-xs text-muted">{tech}</span>
                 </li>
@@ -363,8 +363,7 @@ const stackIcons: Record<string, typeof AstroIcon> = {
         <div class="mt-12 border-t border-line pt-6 text-xs text-muted">
           <p>
             <span class="text-prompt">daniel@portfolio</span><span> ~$</span> echo
-            © {new Date().getFullYear()}
-            {profile.name}
+            © {new Date().getFullYear()}{" "}{profile.name}
           </p>
         </div>
       </footer>
