@@ -41,18 +41,12 @@ export interface Project {
 
 export const projects: Project[] = [
 	{
-		name: 'portfolio-dev',
-		description: 'Mi propio portfolio personal de desarrollo, construido con Astro.',
-		image: '/projects/portfolio-dev.svg',
-		tech: ['Astro', 'JavaScript'],
-		url: 'https://github.com/DanielAparisi/portfolio-dev',
-	},
-	{
-		name: 'terciosapp',
-		description: 'Aplicación web moderna construida como proyecto personal.',
-		image: '/projects/terciosapp.svg',
-		tech: ['Astro', 'React', 'TypeScript', 'Python', 'CSS3', 'JavaScript'],
-		url: 'https://github.com/DanielAparisi/terciosapp',
+		name: 'portfolio-tech',
+		description:
+			'Este mismo portfolio: estética de terminal construida con Astro, TypeScript y Tailwind.',
+		image: '/projects/portfolio-tech.svg',
+		tech: ['Astro', 'TypeScript', 'CSS3'],
+		url: 'https://github.com/DanielAparisi/portfolio-tech',
 	},
 	{
 		name: 'SintracEngineering',
@@ -69,18 +63,26 @@ export const projects: Project[] = [
 		url: 'https://github.com/DanielAparisi/alphaGym',
 	},
 	{
-		name: 'LigaApp',
-		description: 'App de gestión de una liga deportiva.',
-		image: '/projects/ligaapp.svg',
-		tech: ['TypeScript', 'React', 'JavaScript'],
-		url: 'https://github.com/DanielAparisi/LigaApp',
+		name: 'demo-GooglePlaces-api',
+		description:
+			'Demo de integración con la API de Google Places, con frontend en Astro y backend en Python.',
+		image: '/projects/demo-googleplaces-api.svg',
+		tech: ['Astro', 'Python', 'JavaScript', 'CSS3'],
+		url: 'https://github.com/DanielAparisi/demo-GooglePlaces-api',
 	},
 	{
-		name: 'Craft-Pizza-Menu',
-		description: 'Menú interactivo para una pizzería.',
-		image: '/projects/craft-pizza-menu.svg',
-		tech: ['JavaScript', 'React', 'CSS3', 'HTML5'],
-		url: 'https://github.com/DanielAparisi/Craft-Pizza-Menu',
+		name: 'stoic-chatterjee',
+		description: 'Sitio web construido con Astro como proyecto de aprendizaje.',
+		image: '/projects/stoic-chatterjee.svg',
+		tech: ['Astro', 'JavaScript'],
+		url: 'https://github.com/DanielAparisi/stoic-chatterjee',
+	},
+	{
+		name: '3-en-raya',
+		description: 'El clásico juego del tres en raya con JavaScript, HTML y CSS puros.',
+		image: '/projects/3-en-raya.svg',
+		tech: ['JavaScript', 'HTML5', 'CSS3'],
+		url: 'https://github.com/DanielAparisi/3-en-raya',
 	},
 ];
 
