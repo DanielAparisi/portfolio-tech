@@ -1,0 +1,12 @@
+---
+// Etiqueta de comando de terminal: "$ <comando>"
+interface Props {
+	command: string;
+	id?: string;
+}
+const { command, id } = Astro.props;
+---
+
+<p id={id} class="mb-4 text-sm text-muted scroll-mt-28">
+	<span class="text-prompt">$</span>{' '}<span class="text-ink/90">{command}</span>
+</p>
