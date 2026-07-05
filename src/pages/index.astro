@@ -4,10 +4,9 @@ import TerminalChrome from "../components/TerminalChrome.astro";
 import CommandLabel from "../components/CommandLabel.astro";
 import GridBackground from "../components/GridBackground.astro";
 import { profile, about, stack, projects, education } from "../data/site";
-import { useFormAction, useContacts, useStackIcons } from "../hooks";
+import { useStackIcons } from "../hooks";
+import GithubIcon from "../icons/Github.astro";
 
-const formAction = useFormAction();
-const contacts = useContacts();
 const stackIcons = useStackIcons();
 ---
 
@@ -92,12 +91,19 @@ const stackIcons = useStackIcons();
         <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {
             projects.map((project) => (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="reveal group flex flex-col overflow-hidden rounded-lg border border-line bg-surface transition-all hover:-translate-y-1 hover:border-accent/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              >
+              <article class="reveal group relative flex flex-col overflow-hidden rounded-lg border border-line bg-surface transition-all hover:-translate-y-1 hover:border-accent/60">
+                {/* Enlace "estirado": cubre toda la tarjeta y lleva a la demo */}
+                <a
+                  href={project.demo ?? project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={
+                    project.demo
+                      ? `Ver demo de ${project.name}`
+                      : `Ver ${project.name} en GitHub`
+                  }
+                  class="absolute inset-0 z-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                />
                 <div class="aspect-video overflow-hidden border-b border-line bg-terminal">
                   <img
                     src={project.image}
@@ -116,24 +122,37 @@ const stackIcons = useStackIcons();
                   <p class="mt-2 flex-1 text-sm leading-relaxed text-muted">
                     {project.description}
                   </p>
-                  <div class="mt-4 flex items-center gap-2.5 border-t border-line-soft pt-4">
-                    {project.tech.map((tech) => {
-                      const Icon = stackIcons[tech];
-                      return (
-                        Icon && (
-                          <span title={tech}>
-                            <span class="sr-only">{tech}</span>
-                            <Icon
-                              class="h-5 w-5 opacity-80 transition-opacity group-hover:opacity-100"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        )
-                      );
-                    })}
+                  <div class="mt-4 flex items-center justify-between gap-3 border-t border-line-soft pt-4">
+                    <div class="flex items-center gap-2.5">
+                      {project.tech.map((tech) => {
+                        const Icon = stackIcons[tech];
+                        return (
+                          Icon && (
+                            <span title={tech}>
+                              <span class="sr-only">{tech}</span>
+                              <Icon
+                                class="h-5 w-5 opacity-80 transition-opacity group-hover:opacity-100"
+                                aria-hidden="true"
+                              />
+                            </span>
+                          )
+                        );
+                      })}
+                    </div>
+                    {/* z-10 para que sea clicable por encima del enlace estirado */}
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Ver código de ${project.name} en GitHub`}
+                      title="Ver repositorio en GitHub"
+                      class="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-line bg-terminal text-muted transition-colors hover:border-accent/60 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    >
+                      <GithubIcon class="h-4 w-4" aria-hidden="true" />
+                    </a>
                   </div>
                 </div>
-              </a>
+              </article>
             ))
           }
         </div>
@@ -165,145 +184,12 @@ const stackIcons = useStackIcons();
         </div>
       </section>
 
-      <!-- ══════════════ CONTACTO / FOOTER ══════════════ -->
-      <footer
-        id="contacto"
-        class="cv-auto mt-20 scroll-mt-28 border-t border-line pt-12"
-      >
-        <CommandLabel command="./contacto --send" />
-
-        <div class="grid gap-8 lg:grid-cols-5 lg:gap-10">
-          <!-- Formulario -->
-          <form
-            id="contact-form"
-            action={formAction}
-            method="POST"
-            class="reveal rounded-lg border border-line bg-surface p-6 sm:p-8 lg:col-span-3"
-          >
-            <p class="text-sm text-prompt">&gt; Envíame un mensaje</p>
-
-            <div class="mt-6 grid gap-5 sm:grid-cols-2">
-              <div>
-                <label for="name" class="mb-1.5 block text-xs text-muted">
-                  nombre
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  autocomplete="name"
-                  placeholder="Tu nombre"
-                  class="w-full rounded-md border border-line bg-terminal px-3 py-2.5 text-sm text-ink transition-colors placeholder:text-muted/50 focus:border-accent focus:outline-none"
-                />
-              </div>
-              <div>
-                <label for="email" class="mb-1.5 block text-xs text-muted">
-                  email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  autocomplete="email"
-                  placeholder="tu@correo.com"
-                  class="w-full rounded-md border border-line bg-terminal px-3 py-2.5 text-sm text-ink transition-colors placeholder:text-muted/50 focus:border-accent focus:outline-none"
-                />
-              </div>
-            </div>
-
-            <div class="mt-5">
-              <label for="message" class="mb-1.5 block text-xs text-muted">
-                mensaje
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                required
-                placeholder="Cuéntame en qué puedo ayudarte…"
-                class="w-full resize-y rounded-md border border-line bg-terminal px-3 py-2.5 text-sm text-ink transition-colors placeholder:text-muted/50 focus:border-accent focus:outline-none"
-              ></textarea>
-            </div>
-
-            {/* Opciones de FormSubmit + honeypot anti-spam */}
-            <input
-              type="hidden"
-              name="_subject"
-              value="Nuevo mensaje desde el portfolio"
-            />
-            <input type="hidden" name="_captcha" value="false" />
-            <input
-              type="text"
-              name="_honey"
-              tabindex="-1"
-              autocomplete="off"
-              aria-hidden="true"
-              class="hidden"
-            />
-
-            <div class="mt-6 flex flex-wrap items-center gap-4">
-              <button
-                type="submit"
-                class="rounded-md bg-accent-strong px-5 py-2.5 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                Enviar mensaje &rarr;
-              </button>
-              <p
-                id="form-status"
-                role="status"
-                aria-live="polite"
-                class="text-sm"
-              >
-              </p>
-            </div>
-          </form>
-
-          <!-- Vías directas -->
-          <div class="reveal lg:col-span-2">
-            <div class="mt-6 space-y-3">
-              {
-                contacts.map(({ label, value, href, Icon, external }) => (
-                  <a
-                    href={href}
-                    aria-label={`${label}: ${value}`}
-                    {...(external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    class="group flex items-center gap-3 rounded-lg border border-line bg-surface p-4 transition-all hover:-translate-y-1 hover:border-accent/60 hover:bg-surface-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                  >
-                    <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-line bg-terminal text-ink transition-colors group-hover:border-accent/60">
-                      <Icon class="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <span class="min-w-0 flex-1">
-                      <span class="block text-sm font-bold text-ink group-hover:text-accent">
-                        {label}
-                      </span>
-                      <span class="block truncate text-xs text-muted">
-                        {value}
-                      </span>
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      class="text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-accent"
-                    >
-                      &rarr;
-                    </span>
-                  </a>
-                ))
-              }
-            </div>
-          </div>
-        </div>
-
-        <!-- Copyright -->
-        <div class="mt-12 border-t border-line pt-6 text-xs text-muted">
-          <p>
-            <span class="text-prompt">daniel@portfolio</span><span> ~$</span> echo
-            © {new Date().getFullYear()}{" "}{profile.name}
-          </p>
-        </div>
+      <!-- ══════════════ FOOTER ══════════════ -->
+      <footer class="cv-auto mt-20 border-t border-line pt-6 text-xs text-muted">
+        <p>
+          <span class="text-prompt">daniel@portfolio</span><span> ~$</span> echo
+          © {new Date().getFullYear()}{" "}{profile.name}
+        </p>
       </footer>
     </main>
   </div>
@@ -311,8 +197,6 @@ const stackIcons = useStackIcons();
 
 <script>
   import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
-  import { useContactForm } from "../hooks/useContactForm";
 
   useRevealOnScroll();
-  useContactForm();
 </script>

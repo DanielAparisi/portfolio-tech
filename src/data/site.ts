@@ -14,8 +14,8 @@ export const profile = {
 
 export const about = [
 	'Estudiante de Ingeniería de Software en la Universidad Politécnica de Madrid (1er curso).',
-	'Aprendiendo y construyendo con Astro, TypeScript y Java — con base también en JavaScript, C, HTML y CSS.',
-	'Me gusta aprender haciendo: cada proyecto en mi GitHub es una excusa para probar algo nuevo.',
+	'He construido proyectos completos de principio a fin — webs para una ingeniería, un restaurante o un gimnasio — con demos desplegadas en Netlify.',
+	'Me gustaría orientarme hacia el sector de la Inteligencia Artificial y el diseño UX.',
 ];
 
 export const stack = [
@@ -36,7 +36,10 @@ export interface Project {
 	image: string;
 	/** Tecnologías usadas (deben coincidir con las claves de `stackIcons`). */
 	tech: string[];
+	/** URL del repositorio en GitHub. */
 	url: string;
+	/** Demo desplegada en Netlify. Si falta, la tarjeta enlaza al repositorio. */
+	demo?: string;
 }
 
 export const projects: Project[] = [
@@ -47,6 +50,7 @@ export const projects: Project[] = [
 		image: '/projects/portfolio-tech.svg',
 		tech: ['Astro', 'TypeScript', 'CSS3'],
 		url: 'https://github.com/DanielAparisi/portfolio-tech',
+		demo: 'https://portfolio-techh.netlify.app',
 	},
 	{
 		name: 'SintracEngineering',
@@ -54,6 +58,7 @@ export const projects: Project[] = [
 		image: '/projects/sintracengineering.svg',
 		tech: ['Astro', 'CSS3', 'JavaScript'],
 		url: 'https://github.com/DanielAparisi/SintracEngineering',
+		demo: 'https://boisterous-bunny-4f3b0d.netlify.app',
 	},
 	{
 		name: 'alphaGym',
@@ -61,6 +66,7 @@ export const projects: Project[] = [
 		image: '/projects/alphagym.svg',
 		tech: ['Astro', 'JavaScript', 'CSS3'],
 		url: 'https://github.com/DanielAparisi/alphaGym',
+		demo: 'https://gimnasio-alpha.netlify.app',
 	},
 	{
 		name: 'demo-GooglePlaces-api',
@@ -71,11 +77,12 @@ export const projects: Project[] = [
 		url: 'https://github.com/DanielAparisi/demo-GooglePlaces-api',
 	},
 	{
-		name: 'stoic-chatterjee',
-		description: 'Sitio web construido con Astro como proyecto de aprendizaje.',
-		image: '/projects/stoic-chatterjee.svg',
+		name: 'restauranteYummy',
+		description: 'Sitio web para un restaurante, construido con Astro.',
+		image: '/projects/restauranteyummy.svg',
 		tech: ['Astro', 'JavaScript'],
 		url: 'https://github.com/DanielAparisi/stoic-chatterjee',
+		demo: 'https://restauranteyummy2.netlify.app',
 	},
 	{
 		name: '3-en-raya',
@@ -119,5 +126,4 @@ export const tabs = [
 	'stack.json',
 	'proyectos.ts',
 	'educacion.log',
-	'contacto.sh',
 ];
