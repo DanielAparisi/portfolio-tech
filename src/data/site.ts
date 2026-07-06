@@ -93,16 +93,22 @@ export const projects: Project[] = [
 	},
 ];
 
-export interface Education {
+export interface TrayectoriaItem {
 	title: string;
 	place: string;
 	status: string;
 	current?: boolean;
 }
 
-export const education: Education[] = [
+export const trayectoria: TrayectoriaItem[] = [
 	{
 		title: 'Grado en Ingeniería de Software',
+		place: 'Universidad Politécnica de Madrid (UPM)',
+		status: '2025 – actualidad',
+		current: true,
+	},
+	{
+		title: 'Miembro de la Asociación de Ciberseguridad',
 		place: 'Universidad Politécnica de Madrid (UPM)',
 		status: '2025 – actualidad',
 		current: true,
@@ -125,5 +131,5 @@ export const tabs = [
 	'sobre-mi.md',
 	'stack.json',
 	'proyectos.ts',
-	'educacion.log',
+	'trayectoria.log',
 ];

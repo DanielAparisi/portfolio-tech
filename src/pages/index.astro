@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import TerminalChrome from "../components/TerminalChrome.astro";
 import CommandLabel from "../components/CommandLabel.astro";
 import GridBackground from "../components/GridBackground.astro";
-import { profile, about, stack, projects, education } from "../data/site";
+import { profile, about, stack, projects, trayectoria } from "../data/site";
 import { useStackIcons } from "../hooks";
 import GithubIcon from "../icons/Github.astro";
 
@@ -158,12 +158,12 @@ const stackIcons = useStackIcons();
         </div>
       </section>
 
-      <!-- ══════════════ EDUCACIÓN ══════════════ -->
+      <!-- ══════════════ TRAYECTORIA ══════════════ -->
       <section class="cv-auto mt-20">
-        <CommandLabel id="educacion" command="cat educacion.log" />
+        <CommandLabel id="trayectoria" command="cat trayectoria.log" />
         <div class="space-y-4">
           {
-            education.map((edu) => (
+            trayectoria.map((edu) => (
               <div class="reveal flex flex-col gap-4 rounded-lg border border-line bg-surface p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
                 <div>
                   <h3 class="font-bold text-ink">{edu.title}</h3>

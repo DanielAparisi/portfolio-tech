@@ -11,6 +11,7 @@
 	--font-mono: 'JetBrains Mono Variable', 'Fira Code', ui-monospace,
 		SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 
+	--color-page-bg: #010409; /* fondo de la página, detrás de la ventana */
 	--color-terminal: #0d1117; /* fondo de la ventana */
 	--color-chrome: #161b22; /* barra de título / pestañas */
 	--color-surface: #161b22; /* tarjetas */
@@ -30,13 +31,103 @@
 	--color-lang-js: #e3b341;
 }
 
+/*
+  Paletas alternativas. Cambiar de tema es asignar data-theme al <html>:
+  document.documentElement.dataset.theme = 'dracula'
+  (sin atributo se usa el tema por defecto "github" del bloque @theme).
+*/
+
+/* Dracula — morados y rosas sobre gris azulado */
+html[data-theme='dracula'] {
+	--color-page-bg: #1a1b23;
+	--color-terminal: #282a36;
+	--color-chrome: #21222c;
+	--color-surface: #21222c;
+	--color-surface-hover: #2f3140;
+	--color-line: #44475a;
+	--color-line-soft: #343746;
+
+	--color-ink: #f8f8f2;
+	--color-muted: #8b93b8;
+	--color-prompt: #50fa7b;
+	--color-accent: #bd93f9;
+	--color-accent-strong: #9d6ef0;
+
+	--color-lang-astro: #ff5555;
+	--color-lang-ts: #8be9fd;
+	--color-lang-js: #f1fa8c;
+}
+
+/* Catppuccin Mocha — pasteles suaves sobre azul noche */
+html[data-theme='catppuccin'] {
+	--color-page-bg: #11111b;
+	--color-terminal: #1e1e2e;
+	--color-chrome: #181825;
+	--color-surface: #181825;
+	--color-surface-hover: #2a2a3c;
+	--color-line: #45475a;
+	--color-line-soft: #313244;
+
+	--color-ink: #cdd6f4;
+	--color-muted: #a6adc8;
+	--color-prompt: #a6e3a1;
+	--color-accent: #89b4fa;
+	--color-accent-strong: #cba6f7;
+
+	--color-lang-astro: #f38ba8;
+	--color-lang-ts: #89b4fa;
+	--color-lang-js: #f9e2af;
+}
+
+/* Gruvbox — cálido y retro, tonos tierra */
+html[data-theme='gruvbox'] {
+	--color-page-bg: #171a1a;
+	--color-terminal: #282828;
+	--color-chrome: #1d2021;
+	--color-surface: #1d2021;
+	--color-surface-hover: #32302f;
+	--color-line: #504945;
+	--color-line-soft: #3c3836;
+
+	--color-ink: #ebdbb2;
+	--color-muted: #928374;
+	--color-prompt: #b8bb26;
+	--color-accent: #83a598;
+	--color-accent-strong: #d79921;
+
+	--color-lang-astro: #fb4934;
+	--color-lang-ts: #83a598;
+	--color-lang-js: #fabd2f;
+}
+
+/* Tokyo Night — azul profundo con neones fríos */
+html[data-theme='tokyo-night'] {
+	--color-page-bg: #101014;
+	--color-terminal: #1a1b26;
+	--color-chrome: #16161e;
+	--color-surface: #16161e;
+	--color-surface-hover: #24253a;
+	--color-line: #3b4261;
+	--color-line-soft: #292e42;
+
+	--color-ink: #c0caf5;
+	--color-muted: #565f89;
+	--color-prompt: #9ece6a;
+	--color-accent: #7aa2f7;
+	--color-accent-strong: #bb9af7;
+
+	--color-lang-astro: #f7768e;
+	--color-lang-ts: #7aa2f7;
+	--color-lang-js: #e0af68;
+}
+
 html {
 	scroll-behavior: smooth;
 	color-scheme: dark;
 }
 
 body {
-	background: #010409;
+	background: var(--color-page-bg);
 	color: var(--color-ink);
 	font-family: var(--font-mono);
 	-webkit-font-smoothing: antialiased;
@@ -127,15 +218,15 @@ body {
 	height: 10px;
 }
 ::-webkit-scrollbar-track {
-	background: #010409;
+	background: var(--color-page-bg);
 }
 ::-webkit-scrollbar-thumb {
 	background: var(--color-line);
 	border-radius: 6px;
-	border: 2px solid #010409;
+	border: 2px solid var(--color-page-bg);
 }
 ::-webkit-scrollbar-thumb:hover {
-	background: #3d4652;
+	background: color-mix(in srgb, var(--color-line) 75%, var(--color-ink));
 }
 
 ::selection {
