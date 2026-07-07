@@ -1,5 +1,9 @@
 ---
 import '../styles/global.css';
+// URL con hash del subset latin de la fuente, para precargarlo.
+// Debe ser el mismo archivo que referencia el CSS de fontsource:
+// así el preload se reutiliza en vez de descargar dos veces.
+import fontLatin from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url';
 
 interface Props {
 	title?: string;
@@ -22,6 +26,7 @@ const ogImage = new URL('/og.png', Astro.site);
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="preload" as="font" type="font/woff2" href={fontLatin} crossorigin />
 
 		<title>{title}</title>
 		<meta name="description" content={description} />

@@ -163,20 +163,17 @@ body {
 	contain-intrinsic-size: auto 600px;
 }
 
-/* Animación de aparición al hacer scroll */
+/* Animación de aparición al hacer scroll.
+   Solo transform y opacity: se componen en GPU sin repintados
+   (animar filter/blur fuerza paint en CPU en cada frame). */
 @keyframes reveal {
 	from {
 		opacity: 0;
 		transform: translateY(32px) scale(0.97);
-		filter: blur(6px);
-	}
-	60% {
-		filter: blur(0);
 	}
 	to {
 		opacity: 1;
 		transform: translateY(0) scale(1);
-		filter: blur(0);
 	}
 }
 .reveal {

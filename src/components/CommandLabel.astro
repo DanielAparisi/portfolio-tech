@@ -1,5 +1,8 @@
 ---
-// Etiqueta de comando de terminal: "$ <comando>"
+// Etiqueta de comando de terminal: "$ <comando>".
+// Es un h2 para que cada sección entre en el esquema del documento
+// (h1 nombre → h2 sección → h3 tarjetas); Tailwind resetea los
+// estilos de heading, así que se ve igual que un párrafo.
 interface Props {
 	command: string;
 	id?: string;
@@ -7,6 +10,6 @@ interface Props {
 const { command, id } = Astro.props;
 ---
 
-<p id={id} class="mb-4 text-sm text-muted scroll-mt-28">
+<h2 id={id} class="mb-4 text-sm text-muted scroll-mt-28">
 	<span class="text-prompt">$</span>{' '}<span class="text-ink/90">{command}</span>
-</p>
+</h2>

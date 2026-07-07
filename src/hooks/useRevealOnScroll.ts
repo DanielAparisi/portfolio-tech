@@ -1,6 +1,7 @@
 // Revela elementos al entrar en el viewport con una cascada escalonada:
 // los elementos que aparecen en la misma pasada del observer reciben un
 // retardo incremental (--reveal-delay) para que la entrada se perciba mejor.
+
 export function useRevealOnScroll(
   selector = ".reveal",
   threshold = 0.15,
