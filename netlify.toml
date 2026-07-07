@@ -16,6 +16,10 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
     Cross-Origin-Opener-Policy = "same-origin"
+    # WebMCP (src/scripts/webmcp.ts) está en origin trial (Chrome 149-156):
+    # para activarlo en producción, genera un token para este dominio en
+    # https://developer.chrome.com/origintrials y descomenta esta línea.
+    # Origin-Trial = "PEGA_AQUI_TU_TOKEN"
 
 # Los assets con hash en el nombre pueden cachearse para siempre:
 # si cambian, cambia el nombre del archivo.
