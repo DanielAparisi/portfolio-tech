@@ -4,9 +4,7 @@
 // la última sección cuyo inicio la ha cruzado es la activa. Así las
 // secciones cortas del final también tienen su momento activo, y al
 // llegar al fondo de la página se activa siempre la última.
-export function useScrollSpy(
-  selector = 'nav[aria-label="Secciones"] a[href^="#"]',
-) {
+export function useScrollSpy(selector = '#tabs-nav a[href^="#"]') {
   const links = Array.from(
     document.querySelectorAll<HTMLAnchorElement>(selector),
   );

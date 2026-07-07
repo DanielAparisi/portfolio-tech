@@ -6,14 +6,15 @@ import { profile, about, stack, projects, trayectoria } from '../data/site';
 // el resto del contenido, para que nunca quede desactualizado.
 export const GET: APIRoute = ({ site }) => {
 	const home = new URL('/', site).href;
+	const homeEn = new URL('/en/', site).href;
 
 	const md = `# ${profile.name}
 
-> ${profile.role}. ${profile.tagline}
+> ${profile.role.es}. ${profile.tagline.es}
 
 ## Sobre mí
 
-${about.map((line) => `- ${line}`).join('\n')}
+${about.map((line) => `- ${line.es}`).join('\n')}
 
 ## Stack
 
@@ -24,17 +25,18 @@ ${stack.join(', ')}
 ${projects
 	.map((p) => {
 		const demo = p.demo ? ` Demo: [${p.name} en producción](${p.demo}).` : '';
-		return `- [${p.name}](${p.url}): ${p.description} Tecnologías: ${p.tech.join(', ')}.${demo}`;
+		return `- [${p.name}](${p.url}): ${p.description.es} Tecnologías: ${p.tech.join(', ')}.${demo}`;
 	})
 	.join('\n')}
 
 ## Trayectoria
 
-${trayectoria.map((t) => `- ${t.title} — ${t.place} (${t.status})`).join('\n')}
+${trayectoria.map((t) => `- ${t.title.es} — ${t.place.es} (${t.status.es})`).join('\n')}
 
 ## Enlaces
 
-- [Portfolio](${home})
+- [Portfolio (español)](${home})
+- [Portfolio (English)](${homeEn})
 - [GitHub](${profile.github})
 - [LinkedIn](${profile.linkedin})
 - [Email](mailto:${profile.email})

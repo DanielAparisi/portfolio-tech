@@ -4,23 +4,31 @@ import '../styles/global.css';
 // Debe ser el mismo archivo que referencia el CSS de fontsource:
 // así el preload se reutiliza en vez de descargar dos veces.
 import fontLatin from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import { ui, type Locale } from '../data/site';
 
 interface Props {
 	title?: string;
 	description?: string;
+	locale?: Locale;
 }
 
 const {
-	title = 'Daniel Aparisi — Desarrollador junior',
-	description = 'Portfolio de Daniel Aparisi, estudiante de Ingeniería de Software en la UPM. Aprendiendo y construyendo con Astro, TypeScript y Java.',
+	locale = 'es',
+	title = ui[locale ?? 'es'].metaTitle,
+	description = ui[locale ?? 'es'].metaDescription,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og.png', Astro.site);
+const ogImageAlt = {
+	es: 'Terminal con el prompt whoami mostrando: Daniel Aparisi, estudiante de Ingeniería de Software en la UPM',
+	en: 'Terminal with the whoami prompt showing: Daniel Aparisi, Software Engineering student at UPM',
+}[locale];
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,15 +42,21 @@ const ogImage = new URL('/og.png', Astro.site);
 		<meta name="theme-color" content="#0d1117" />
 		<link rel="canonical" href={canonical} />
 
+		<!-- Versiones por idioma: mismo contenido en / (es) y /en/ -->
+		<link rel="alternate" hreflang="es" href={getAbsoluteLocaleUrl('es', '')} />
+		<link rel="alternate" hreflang="en" href={getAbsoluteLocaleUrl('en', '')} />
+		<link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl('es', '')} />
+
 		<!-- Open Graph -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonical} />
+		<meta property="og:locale" content={locale === 'es' ? 'es_ES' : 'en_US'} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={ogImage} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
-		<meta property="og:image:alt" content="Terminal con el prompt whoami mostrando: Daniel Aparisi, estudiante de Ingeniería de Software en la UPM" />
+		<meta property="og:image:alt" content={ogImageAlt} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:image" content={ogImage} />
 
