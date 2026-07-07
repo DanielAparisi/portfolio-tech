@@ -213,8 +213,7 @@ export const ui = {
 		viewOnGithub: 'en GitHub',
 		viewCodeOf: 'Ver código de',
 		viewRepo: 'Ver repositorio en GitHub',
-		contactHeading: '¿Tienes un proyecto o una oportunidad?',
-		contactSub: 'Escríbeme y hablamos.',
+		contactHeading: 'Escríbeme y hablamos.',
 	},
 	en: {
 		metaTitle: 'Daniel Aparisi — Junior developer',
@@ -232,7 +231,6 @@ export const ui = {
 		viewOnGithub: 'on GitHub',
 		viewCodeOf: 'View source of',
 		viewRepo: 'View repository on GitHub',
-		contactHeading: 'Got a project or an opportunity?',
-		contactSub: "Drop me a line and let's talk.",
+		contactHeading: "Drop me a line and let's talk.",
 	},
 } satisfies Record<Locale, Record<string, string>>;
