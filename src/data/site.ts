@@ -132,4 +132,5 @@ export const tabs = [
 	'stack.json',
 	'proyectos.ts',
 	'trayectoria.log',
+	'contactame.sh',
 ];

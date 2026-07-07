@@ -1,0 +1,25 @@
+# Cabeceras de seguridad y caché. Verificar tras desplegar en:
+# https://securityheaders.com y el panel Security de Lighthouse.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # CSP estricta: solo recursos del propio origen, sin inline.
+    # require-trusted-types-for 'script' mitiga XSS basado en DOM
+    # (los sinks tipo innerHTML solo aceptan Trusted Types, no strings).
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'; require-trusted-types-for 'script'"
+    # HSTS: el navegador recuerda durante 2 años que este sitio es solo
+    # HTTPS y ni siquiera intenta conectar por HTTP (evita downgrade/MITM).
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+
+# Los assets con hash en el nombre pueden cachearse para siempre:
+# si cambian, cambia el nombre del archivo.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

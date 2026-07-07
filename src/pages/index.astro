@@ -6,6 +6,8 @@ import GridBackground from "../components/GridBackground.astro";
 import { profile, about, stack, projects, trayectoria } from "../data/site";
 import { useStackIcons } from "../icons/useStackIcons";
 import GithubIcon from "../icons/Github.astro";
+import GmailIcon from "../icons/Gmail.astro";
+import LinkedinIcon from "../icons/Linkedin.astro";
 
 const stackIcons = useStackIcons();
 ---
@@ -181,6 +183,39 @@ const stackIcons = useStackIcons();
               </div>
             ))
           }
+        </div>
+      </section>
+
+      <!-- ══════════════ CONTACTO ══════════════ -->
+      <section class="cv-auto mt-20">
+        <CommandLabel id="contacto" command="./contactame.sh" />
+        <div
+          class="reveal rounded-lg border border-line bg-surface p-6 text-center sm:p-10"
+        >
+          <p class="text-lg font-bold text-ink">
+            ¿Tienes un proyecto o una oportunidad?
+          </p>
+          <p class="mt-2 text-sm text-muted">
+            <span class="text-prompt">&gt;</span> Escríbeme y hablamos.
+          </p>
+          <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href={`mailto:${profile.email}`}
+              class="flex items-center gap-2.5 rounded-md bg-prompt px-4 py-2.5 text-sm font-bold text-terminal transition-colors hover:bg-prompt/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prompt"
+            >
+              <GmailIcon class="h-5 w-5" aria-hidden="true" />
+              {profile.email}
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2.5 rounded-md border border-line bg-terminal px-4 py-2.5 text-sm text-ink transition-colors hover:border-accent/60 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              <LinkedinIcon class="h-5 w-5" aria-hidden="true" />
+              LinkedIn
+            </a>
+          </div>
         </div>
       </section>
 
