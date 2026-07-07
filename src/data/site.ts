@@ -127,6 +127,7 @@ export const projects: Project[] = [
 		image: '/projects/3-en-raya.webp',
 		tech: ['JavaScript', 'HTML5', 'CSS3'],
 		url: 'https://github.com/DanielAparisi/3-en-raya',
+		demo: 'https://33enraya.netlify.app',
 	},
 ];
 
@@ -194,7 +195,7 @@ export const tabs: { anchor: string; label: Localized }[] = [
 	{ anchor: '#contacto', label: { es: 'contactame.sh', en: 'contact-me.sh' } },
 ];
 
-// Textos de interfaz (metadatos, comandos de sección, aria-labels…)
+// Textos de interfaz 
 export const ui = {
 	es: {
 		metaTitle: 'Daniel Aparisi — Desarrollador junior',

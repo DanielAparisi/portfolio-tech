@@ -13,7 +13,16 @@ export default defineConfig({
 			prefixDefaultLocale: false, // español en la raíz, inglés en /en/
 		},
 	},
-	integrations: [sitemap()],
+	integrations: [
+		sitemap({
+			// Anota cada URL del sitemap con sus alternativas de idioma
+			// (xhtml:link hreflang), reforzando los <link> del HTML.
+			i18n: {
+				defaultLocale: 'es',
+				locales: { es: 'es-ES', en: 'en-US' },
+			},
+		}),
+	],
 	vite: {
 		plugins: [tailwindcss()],
 		build: {

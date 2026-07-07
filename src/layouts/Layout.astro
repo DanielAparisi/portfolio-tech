@@ -5,7 +5,7 @@ import '../styles/global.css';
 // así el preload se reutiliza en vez de descargar dos veces.
 import fontLatin from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url';
 import { getAbsoluteLocaleUrl } from 'astro:i18n';
-import { ui, type Locale } from '../data/site';
+import { profile, stack, ui, type Locale } from '../data/site';
 
 interface Props {
 	title?: string;
@@ -25,6 +25,44 @@ const ogImageAlt = {
 	es: 'Terminal con el prompt whoami mostrando: Daniel Aparisi, estudiante de Ingeniería de Software en la UPM',
 	en: 'Terminal with the whoami prompt showing: Daniel Aparisi, Software Engineering student at UPM',
 }[locale];
+
+// Datos estructurados Schema.org: describen la página como el perfil
+// de una persona-entidad (nombre, rol, estudios, enlaces verificados).
+// Es lo que consumen Google y los motores de IA para "saber quién eres".
+// Nota CSP: los bloques ld+json son datos, no se ejecutan como script,
+// así que la política script-src 'self' no los bloquea.
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfilePage',
+	url: canonical.href,
+	inLanguage: locale,
+	mainEntity: {
+		'@type': 'Person',
+		'@id': new URL('/#person', Astro.site).href,
+		name: profile.name,
+		jobTitle: profile.role[locale],
+		description: profile.tagline[locale],
+		url: getAbsoluteLocaleUrl(locale, ''),
+		image: ogImage.href,
+		email: `mailto:${profile.email}`,
+		sameAs: [profile.github, profile.linkedin, profile.fiverr],
+		knowsAbout: stack,
+		alumniOf: [
+			{
+				'@type': 'CollegeOrUniversity',
+				name: 'Universidad Politécnica de Madrid',
+			},
+			{ '@type': 'CollegeOrUniversity', name: 'Universidad de Alcalá' },
+		],
+		memberOf: {
+			'@type': 'Organization',
+			name:
+				locale === 'es'
+					? 'Asociación de Ciberseguridad de la UPM'
+					: 'UPM Cybersecurity Association',
+		},
+	},
+};
 ---
 
 <!doctype html>
@@ -45,6 +83,7 @@ const ogImageAlt = {
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta name="author" content="Daniel Aparisi" />
+		<meta name="robots" content="index, follow, max-image-preview:large" />
 		<meta name="theme-color" content="#0d1117" />
 		<link rel="canonical" href={canonical} />
 
@@ -58,7 +97,8 @@ const ogImageAlt = {
 		/>
 
 		<!-- Open Graph -->
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content="profile" />
+		<meta property="og:site_name" content="Daniel Aparisi — Portfolio" />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:locale" content={locale === 'es' ? 'es_ES' : 'en_US'} />
 		<meta property="og:title" content={title} />
@@ -68,7 +108,16 @@ const ogImageAlt = {
 		<meta property="og:image:height" content="630" />
 		<meta property="og:image:alt" content={ogImageAlt} />
 		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImage} />
+
+		<!-- Datos estructurados (Schema.org) -->
+		<script
+			is:inline
+			type="application/ld+json"
+			set:html={JSON.stringify(schema)}
+		/>
 	</head>
 	<body>
 		<slot />
