@@ -8,6 +8,16 @@ export interface Localized {
 	en: string;
 }
 
+// Portadas de proyectos: al importarlas desde src/assets, Astro las
+// optimiza en build (variantes responsive, sin metadatos EXIF/ICC) y
+// las sirve con hash bajo /_astro/, que Netlify cachea como inmutable.
+import terciosappImg from '../assets/projects/terciosapp.webp';
+import sintracengineeringImg from '../assets/projects/sintracengineering.webp';
+import alphagymImg from '../assets/projects/alphagym.webp';
+import demoGooglePlacesImg from '../assets/projects/demo-googleplaces-api.webp';
+import restauranteyummyImg from '../assets/projects/restauranteyummy.webp';
+import tresEnRayaImg from '../assets/projects/3-en-raya.webp';
+
 export const profile = {
 	name: 'Daniel Aparisi',
 	role: {
@@ -53,8 +63,8 @@ export const stack = [
 export interface Project {
 	name: string;
 	description: Localized;
-	/** Ruta de la portada dentro de /public. Reemplaza los SVG por capturas reales. */
-	image: string;
+	/** Portada importada desde src/assets/projects (optimizada por Astro). */
+	image: ImageMetadata;
 	/** Tecnologías usadas (deben coincidir con las claves de `stackIcons`). */
 	tech: string[];
 	/** URL del repositorio en GitHub. */
@@ -70,7 +80,7 @@ export const projects: Project[] = [
 			es: 'Web para "Los Tercios", un equipo de fútbol 7 de liga local: plantilla con fichas de jugadores, historia y equipaciones.',
 			en: 'Website for "Los Tercios", a local 7-a-side football league team: squad with player cards, history and kits.',
 		},
-		image: '/projects/terciosapp.webp',
+		image: terciosappImg,
 		tech: ['Astro', 'TypeScript', 'CSS3'],
 		url: 'https://github.com/DanielAparisi/terciosapp',
 		demo: 'https://lostercios.netlify.app',
@@ -81,7 +91,7 @@ export const projects: Project[] = [
 			es: 'Sitio web para una empresa de ingeniería.',
 			en: 'Website for an engineering company.',
 		},
-		image: '/projects/sintracengineering.webp',
+		image: sintracengineeringImg,
 		tech: ['Astro', 'CSS3', 'JavaScript'],
 		url: 'https://github.com/DanielAparisi/SintracEngineering',
 		demo: 'https://boisterous-bunny-4f3b0d.netlify.app',
@@ -92,7 +102,7 @@ export const projects: Project[] = [
 			es: 'Landing page para un gimnasio.',
 			en: 'Landing page for a gym.',
 		},
-		image: '/projects/alphagym.webp',
+		image: alphagymImg,
 		tech: ['Astro', 'JavaScript', 'CSS3'],
 		url: 'https://github.com/DanielAparisi/alphaGym',
 		demo: 'https://gimnasioalpha.netlify.app',
@@ -103,7 +113,7 @@ export const projects: Project[] = [
 			es: 'Demo de integración con la API de Google Places, con frontend en Astro y backend en Python.',
 			en: 'Google Places API integration demo, with an Astro frontend and a Python backend.',
 		},
-		image: '/projects/demo-googleplaces-api.webp',
+		image: demoGooglePlacesImg,
 		tech: ['Astro', 'Python', 'JavaScript', 'CSS3'],
 		url: 'https://github.com/DanielAparisi/demo-GooglePlaces-api',
 	},
@@ -113,7 +123,7 @@ export const projects: Project[] = [
 			es: 'Sitio web para un restaurante, construido con Astro.',
 			en: 'Restaurant website, built with Astro.',
 		},
-		image: '/projects/restauranteyummy.webp',
+		image: restauranteyummyImg,
 		tech: ['Astro', 'JavaScript'],
 		url: 'https://github.com/DanielAparisi/stoic-chatterjee',
 		demo: 'https://restauranteyummy2.netlify.app',
@@ -124,7 +134,7 @@ export const projects: Project[] = [
 			es: 'El clásico juego del tres en raya con JavaScript, HTML y CSS puros.',
 			en: 'The classic tic-tac-toe game in plain JavaScript, HTML and CSS.',
 		},
-		image: '/projects/3-en-raya.webp',
+		image: tresEnRayaImg,
 		tech: ['JavaScript', 'HTML5', 'CSS3'],
 		url: 'https://github.com/DanielAparisi/3-en-raya',
 		demo: 'https://33enraya.netlify.app',

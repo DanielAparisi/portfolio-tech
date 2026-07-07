@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import TerminalChrome from './TerminalChrome.astro';
 import CommandLabel from './CommandLabel.astro';
@@ -120,11 +121,14 @@ const stackIcons = useStackIcons();
 									class="absolute inset-0 z-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
 								/>
 								<div class="aspect-video overflow-hidden border-b border-line bg-terminal">
-									<img
+									{/* widths/sizes según la rejilla: 1 col en móvil, 2 en sm, 3 en lg
+									    (contenedor max-w-5xl) → el navegador descarga solo el tamaño
+									    que necesita en vez del original de 800px. */}
+									<Image
 										src={project.image}
 										alt={`${t.projectPreviewAlt} ${project.name}`}
-										width="640"
-										height="360"
+										widths={[320, 480, 640, 800]}
+										sizes="(min-width: 1024px) 310px, (min-width: 640px) 45vw, 92vw"
 										loading="lazy"
 										decoding="async"
 										class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
