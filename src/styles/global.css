@@ -8,8 +8,9 @@
   para poder usarlos como utilidades (bg-terminal, text-prompt, etc.).
 */
 @theme {
-	--font-mono: 'JetBrains Mono Variable', 'Fira Code', ui-monospace,
-		SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+	--font-mono:
+		'JetBrains Mono Variable', 'Fira Code', ui-monospace, SFMono-Regular,
+		'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 
 	--color-page-bg: #010409; /* fondo de la página, detrás de la ventana */
 	--color-terminal: #0d1117; /* fondo de la ventana */

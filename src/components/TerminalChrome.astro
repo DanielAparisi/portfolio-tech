@@ -1,59 +1,64 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { tabs, ui, type Locale } from "../data/site";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { tabs, ui, type Locale } from '../data/site';
 
-const locale = (Astro.currentLocale ?? "es") as Locale;
+const locale = (Astro.currentLocale ?? 'es') as Locale;
 const t = ui[locale];
-const otherLocale: Locale = locale === "es" ? "en" : "es";
+const otherLocale: Locale = locale === 'es' ? 'en' : 'es';
 ---
 
 <div class="sticky top-0 z-20 border-b border-line bg-chrome/95 backdrop-blur">
-  <!-- Barra de título estilo macOS -->
-  <div class="flex items-center gap-2 px-4 py-3">
-    <div class="flex items-center gap-2" aria-hidden="true">
-      <span class="h-3 w-3 rounded-full bg-[#ff5f56]"></span>
-      <span class="h-3 w-3 rounded-full bg-[#ffbd2e]"></span>
-      <span class="h-3 w-3 rounded-full bg-[#27c93f]"></span>
-    </div>
-    <p class="flex-1 truncate text-center text-xs text-muted select-none">
-      daniel@portfolio<span class="hidden sm:inline"> — zsh — 120x40</span>
-    </p>
-    <!-- Selector de idioma (mismo ancho que el grupo de botones
+	<!-- Barra de título estilo macOS -->
+	<div class="flex items-center gap-2 px-4 py-3">
+		<div class="flex items-center gap-2" aria-hidden="true">
+			<span class="h-3 w-3 rounded-full bg-[#ff5f56]"></span>
+			<span class="h-3 w-3 rounded-full bg-[#ffbd2e]"></span>
+			<span class="h-3 w-3 rounded-full bg-[#27c93f]"></span>
+		</div>
+		<p class="flex-1 truncate text-center text-xs text-muted select-none">
+			daniel@portfolio<span class="hidden sm:inline"> — zsh — 120x40</span>
+		</p>
+		<!-- Selector de idioma (mismo ancho que el grupo de botones
          de la izquierda para que el título quede centrado) -->
-    <nav class="flex w-14 justify-end gap-1.5 text-xs" aria-label="Idioma / Language">
-      <span class="font-bold text-ink" aria-current="true">{locale.toUpperCase()}</span>
-      <span class="text-line" aria-hidden="true">/</span>
-      <a
-        href={getRelativeLocaleUrl(otherLocale, "")}
-        aria-label={t.switchLocaleLabel}
-        class="text-muted transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-none"
-      >
-        {otherLocale.toUpperCase()}
-      </a>
-    </nav>
-  </div>
+		<nav
+			class="flex w-14 justify-end gap-1.5 text-xs"
+			aria-label="Idioma / Language"
+		>
+			<span class="font-bold text-ink" aria-current="true"
+				>{locale.toUpperCase()}</span
+			>
+			<span class="text-line" aria-hidden="true">/</span>
+			<a
+				href={getRelativeLocaleUrl(otherLocale, '')}
+				aria-label={t.switchLocaleLabel}
+				class="text-muted transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-none"
+			>
+				{otherLocale.toUpperCase()}
+			</a>
+		</nav>
+	</div>
 
-  <!-- Pestañas / navegación -->
-  <nav
-    id="tabs-nav"
-    aria-label={t.navLabel}
-    class="flex items-center justify-center-safe gap-1 overflow-x-auto border-t border-line-soft px-2 text-xs"
-  >
-    {
-      tabs.map((tab) => (
-        <a
-          href={tab.anchor}
-          class="shrink-0 border-r border-b-2 border-line-soft border-b-transparent px-3 py-2.5 text-muted transition-colors hover:text-ink focus-visible:text-accent focus-visible:outline-none aria-[current=location]:border-b-prompt aria-[current=location]:bg-surface-hover aria-[current=location]:text-ink"
-        >
-          {tab.label[locale]}
-        </a>
-      ))
-    }
-  </nav>
+	<!-- Pestañas / navegación -->
+	<nav
+		id="tabs-nav"
+		aria-label={t.navLabel}
+		class="flex items-center justify-center-safe gap-1 overflow-x-auto border-t border-line-soft px-2 text-xs"
+	>
+		{
+			tabs.map((tab) => (
+				<a
+					href={tab.anchor}
+					class="shrink-0 border-r border-b-2 border-line-soft border-b-transparent px-3 py-2.5 text-muted transition-colors hover:text-ink focus-visible:text-accent focus-visible:outline-none aria-[current=location]:border-b-prompt aria-[current=location]:bg-surface-hover aria-[current=location]:text-ink"
+				>
+					{tab.label[locale]}
+				</a>
+			))
+		}
+	</nav>
 </div>
 
 <script>
-  import { useScrollSpy } from "../hooks/useScrollSpy";
+	import { useScrollSpy } from '../hooks/useScrollSpy';
 
-  useScrollSpy();
+	useScrollSpy();
 </script>

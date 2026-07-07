@@ -1,2 +1,2 @@
-export { useRevealOnScroll } from "./useRevealOnScroll";
-export { useScrollSpy } from "./useScrollSpy";
+export { useRevealOnScroll } from './useRevealOnScroll';
+export { useScrollSpy } from './useScrollSpy';

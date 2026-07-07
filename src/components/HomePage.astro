@@ -1,24 +1,24 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import TerminalChrome from "./TerminalChrome.astro";
-import CommandLabel from "./CommandLabel.astro";
-import GridBackground from "./GridBackground.astro";
+import Layout from '../layouts/Layout.astro';
+import TerminalChrome from './TerminalChrome.astro';
+import CommandLabel from './CommandLabel.astro';
+import GridBackground from './GridBackground.astro';
 import {
-  profile,
-  about,
-  stack,
-  projects,
-  trayectoria,
-  ui,
-  type Locale,
-} from "../data/site";
-import { useStackIcons } from "../icons/useStackIcons";
-import GithubIcon from "../icons/Github.astro";
-import GmailIcon from "../icons/Gmail.astro";
-import LinkedinIcon from "../icons/Linkedin.astro";
+	profile,
+	about,
+	stack,
+	projects,
+	trayectoria,
+	ui,
+	type Locale,
+} from '../data/site';
+import { useStackIcons } from '../icons/useStackIcons';
+import GithubIcon from '../icons/Github.astro';
+import GmailIcon from '../icons/Gmail.astro';
+import LinkedinIcon from '../icons/Linkedin.astro';
 
 interface Props {
-  locale: Locale;
+	locale: Locale;
 }
 const { locale } = Astro.props;
 const t = ui[locale];
@@ -26,225 +26,228 @@ const stackIcons = useStackIcons();
 ---
 
 <Layout locale={locale} title={t.metaTitle} description={t.metaDescription}>
-  <GridBackground />
+	<GridBackground />
 
-  <div class="min-h-screen">
-    <TerminalChrome />
+	<div class="min-h-screen">
+		<TerminalChrome />
 
-    <main class="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
-      <!-- ══════════════ HERO ══════════════ -->
-      <section id="hero" class="scroll-mt-28 text-center">
-        <p class="text-sm sm:text-base">
-          <span class="text-accent">daniel@portfolio</span><span
-            class="text-muted"
-          >
-            ~$</span
-          >{" "}<span class="text-prompt">whoami</span><span class="cursor"
-          ></span>
-        </p>
+		<main class="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
+			<!-- ══════════════ HERO ══════════════ -->
+			<section id="hero" class="scroll-mt-28 text-center">
+				<p class="text-sm sm:text-base">
+					<span class="text-accent">daniel@portfolio</span><span
+						class="text-muted"
+					>
+						~$</span
+					>{' '}<span class="text-prompt">whoami</span><span class="cursor"
+					></span>
+				</p>
 
-        <h1
-          class="reveal mt-5 text-4xl font-extrabold tracking-tight text-ink sm:text-6xl"
-        >
-          {profile.name}
-        </h1>
+				<h1
+					class="reveal mt-5 text-4xl font-extrabold tracking-tight text-ink sm:text-6xl"
+				>
+					{profile.name}
+				</h1>
 
-        <p class="reveal mt-3 text-lg text-accent sm:text-xl">
-          <span class="text-prompt">&gt;</span>
-          {profile.role[locale]}
-        </p>
+				<p class="reveal mt-3 text-lg text-accent sm:text-xl">
+					<span class="text-prompt">&gt;</span>
+					{profile.role[locale]}
+				</p>
 
-        <p class="reveal mx-auto mt-5 max-w-2xl leading-relaxed text-muted">
-          {profile.tagline[locale]}
-        </p>
-      </section>
+				<p class="reveal mx-auto mt-5 max-w-2xl leading-relaxed text-muted">
+					{profile.tagline[locale]}
+				</p>
+			</section>
 
-      <!-- ══════════════ SOBRE MÍ ══════════════ -->
-      <section class="cv-auto mt-20">
-        <h2 id="sobre-mi" class="mb-4 text-sm text-prompt scroll-mt-28">
-          {t.aboutCommand}
-        </h2>
-        <div class="reveal rounded-lg border border-line bg-surface p-6 sm:p-8">
-          <ul class="space-y-4">
-            {
-              about.map((line) => (
-                <li class="flex gap-3 leading-relaxed text-ink/90">
-                  <span class="mt-0.5 text-accent" aria-hidden="true">
-                    &#9656;
-                  </span>
-                  <span>{line[locale]}</span>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </section>
+			<!-- ══════════════ SOBRE MÍ ══════════════ -->
+			<section class="cv-auto mt-20">
+				<h2 id="sobre-mi" class="mb-4 text-sm text-prompt scroll-mt-28">
+					{t.aboutCommand}
+				</h2>
+				<div class="reveal rounded-lg border border-line bg-surface p-6 sm:p-8">
+					<ul class="space-y-4">
+						{
+							about.map((line) => (
+								<li class="flex gap-3 leading-relaxed text-ink/90">
+									<span class="mt-0.5 text-accent" aria-hidden="true">
+										&#9656;
+									</span>
+									<span>{line[locale]}</span>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</section>
 
-      <!-- ══════════════ STACK ══════════════ -->
-      <section class="cv-auto mt-20">
-        <CommandLabel id="stack" command={t.stackCommand} />
-        <ul
-          class="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 md:grid-cols-8"
-        >
-          {
-            stack.map((tech) => {
-              const Icon = stackIcons[tech];
-              return (
-                <li class="reveal flex flex-col items-center gap-2.5 rounded-lg border border-line bg-surface p-3 transition-all hover:-translate-y-1 hover:border-accent/60 hover:bg-surface-hover sm:p-4">
-                  {Icon && <Icon class="h-9 w-9" aria-hidden="true" />}
-                  <span class="text-xs text-muted">{tech}</span>
-                </li>
-              );
-            })
-          }
-        </ul>
-      </section>
+			<!-- ══════════════ STACK ══════════════ -->
+			<section class="cv-auto mt-20">
+				<CommandLabel id="stack" command={t.stackCommand} />
+				<ul
+					class="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 md:grid-cols-8"
+				>
+					{
+						stack.map((tech) => {
+							const Icon = stackIcons[tech];
+							return (
+								<li class="reveal flex flex-col items-center gap-2.5 rounded-lg border border-line bg-surface p-3 transition-all hover:-translate-y-1 hover:border-accent/60 hover:bg-surface-hover sm:p-4">
+									{Icon && <Icon class="h-9 w-9" aria-hidden="true" />}
+									<span class="text-xs text-muted">{tech}</span>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</section>
 
-      <!-- ══════════════ PROYECTOS ══════════════ -->
-      <section class="cv-auto mt-20">
-        <CommandLabel id="proyectos" command={t.projectsCommand} />
-        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {
-            projects.map((project) => (
-              <article class="reveal group relative flex flex-col overflow-hidden rounded-lg border border-line bg-surface transition-all hover:-translate-y-1 hover:border-accent/60">
-                {/* Enlace "estirado": cubre toda la tarjeta y lleva a la demo */}
-                <a
-                  href={project.demo ?? project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={
-                    project.demo
-                      ? `${t.viewDemoOf} ${project.name}`
-                      : `${t.viewCodeOf} ${project.name} ${t.viewOnGithub}`
-                  }
-                  class="absolute inset-0 z-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                />
-                <div class="aspect-video overflow-hidden border-b border-line bg-terminal">
-                  <img
-                    src={project.image}
-                    alt={`${t.projectPreviewAlt} ${project.name}`}
-                    width="640"
-                    height="360"
-                    loading="lazy"
-                    decoding="async"
-                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div class="flex flex-1 flex-col p-5">
-                  <h3 class="font-bold text-ink group-hover:text-accent">
-                    {project.name}
-                  </h3>
-                  <p class="mt-2 flex-1 text-sm leading-relaxed text-muted">
-                    {project.description[locale]}
-                  </p>
-                  <div class="mt-4 flex items-center justify-between gap-3 border-t border-line-soft pt-4">
-                    <div class="flex items-center gap-2.5">
-                      {project.tech.map((tech) => {
-                        const Icon = stackIcons[tech];
-                        return (
-                          Icon && (
-                            <span title={tech}>
-                              <span class="sr-only">{tech}</span>
-                              <Icon
-                                class="h-5 w-5 opacity-80 transition-opacity group-hover:opacity-100"
-                                aria-hidden="true"
-                              />
-                            </span>
-                          )
-                        );
-                      })}
-                    </div>
-                    {/* z-10 para que sea clicable por encima del enlace estirado */}
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${t.viewCodeOf} ${project.name} ${t.viewOnGithub}`}
-                      title={t.viewRepo}
-                      class="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-line bg-terminal text-muted transition-colors hover:border-accent/60 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                    >
-                      <GithubIcon class="h-4 w-4" aria-hidden="true" />
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))
-          }
-        </div>
-      </section>
+			<!-- ══════════════ PROYECTOS ══════════════ -->
+			<section class="cv-auto mt-20">
+				<CommandLabel id="proyectos" command={t.projectsCommand} />
+				<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+					{
+						projects.map((project) => (
+							<article class="reveal group relative flex flex-col overflow-hidden rounded-lg border border-line bg-surface transition-all hover:-translate-y-1 hover:border-accent/60">
+								{/* Enlace "estirado": cubre toda la tarjeta y lleva a la demo */}
+								<a
+									href={project.demo ?? project.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={
+										project.demo
+											? `${t.viewDemoOf} ${project.name}`
+											: `${t.viewCodeOf} ${project.name} ${t.viewOnGithub}`
+									}
+									class="absolute inset-0 z-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+								/>
+								<div class="aspect-video overflow-hidden border-b border-line bg-terminal">
+									<img
+										src={project.image}
+										alt={`${t.projectPreviewAlt} ${project.name}`}
+										width="640"
+										height="360"
+										loading="lazy"
+										decoding="async"
+										class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+									/>
+								</div>
+								<div class="flex flex-1 flex-col p-5">
+									<h3 class="font-bold text-ink group-hover:text-accent">
+										{project.name}
+									</h3>
+									<p class="mt-2 flex-1 text-sm leading-relaxed text-muted">
+										{project.description[locale]}
+									</p>
+									<div class="mt-4 flex items-center justify-between gap-3 border-t border-line-soft pt-4">
+										<div class="flex items-center gap-2.5">
+											{project.tech.map((tech) => {
+												const Icon = stackIcons[tech];
+												return (
+													Icon && (
+														<span title={tech}>
+															<span class="sr-only">{tech}</span>
+															<Icon
+																class="h-5 w-5 opacity-80 transition-opacity group-hover:opacity-100"
+																aria-hidden="true"
+															/>
+														</span>
+													)
+												);
+											})}
+										</div>
+										{/* z-10 para que sea clicable por encima del enlace estirado */}
+										<a
+											href={project.url}
+											target="_blank"
+											rel="noopener noreferrer"
+											aria-label={`${t.viewCodeOf} ${project.name} ${t.viewOnGithub}`}
+											title={t.viewRepo}
+											class="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-line bg-terminal text-muted transition-colors hover:border-accent/60 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+										>
+											<GithubIcon class="h-4 w-4" aria-hidden="true" />
+										</a>
+									</div>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</section>
 
-      <!-- ══════════════ TRAYECTORIA ══════════════ -->
-      <section class="cv-auto mt-20">
-        <CommandLabel id="trayectoria" command={t.trayectoriaCommand} />
-        <div class="space-y-4">
-          {
-            trayectoria.map((edu) => (
-              <div class="reveal flex flex-col gap-4 rounded-lg border border-line bg-surface p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
-                <div>
-                  <h3 class="font-bold text-ink">{edu.title[locale]}</h3>
-                  <p class="mt-1 text-sm text-muted">{edu.place[locale]}</p>
-                </div>
-                <span
-                  class={`w-fit shrink-0 rounded-full border px-3 py-1 text-xs ${
-                    edu.current
-                      ? "border-prompt/40 bg-prompt/10 text-prompt"
-                      : "border-line text-muted"
-                  }`}
-                >
-                  {edu.status[locale]}
-                </span>
-              </div>
-            ))
-          }
-        </div>
-      </section>
+			<!-- ══════════════ TRAYECTORIA ══════════════ -->
+			<section class="cv-auto mt-20">
+				<CommandLabel id="trayectoria" command={t.trayectoriaCommand} />
+				<div class="space-y-4">
+					{
+						trayectoria.map((edu) => (
+							<div class="reveal flex flex-col gap-4 rounded-lg border border-line bg-surface p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+								<div>
+									<h3 class="font-bold text-ink">{edu.title[locale]}</h3>
+									<p class="mt-1 text-sm text-muted">{edu.place[locale]}</p>
+								</div>
+								<span
+									class={`w-fit shrink-0 rounded-full border px-3 py-1 text-xs ${
+										edu.current
+											? 'border-prompt/40 bg-prompt/10 text-prompt'
+											: 'border-line text-muted'
+									}`}
+								>
+									{edu.status[locale]}
+								</span>
+							</div>
+						))
+					}
+				</div>
+			</section>
 
-      <!-- ══════════════ CONTACTO ══════════════ -->
-      <section class="cv-auto mt-20">
-        <CommandLabel id="contacto" command={t.contactCommand} />
-        <div
-          class="reveal rounded-lg border border-line bg-surface p-6 text-center sm:p-10"
-        >
-          <p class="text-lg font-bold text-ink">
-            {t.contactHeading}
-          </p>
-          <p class="mt-2 text-sm text-muted">
-            <span class="text-prompt">&gt;</span> {t.contactSub}
-          </p>
-          <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={`mailto:${profile.email}`}
-              class="flex items-center gap-2.5 rounded-md bg-prompt px-4 py-2.5 text-sm font-bold text-terminal transition-colors hover:bg-prompt/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prompt"
-            >
-              <GmailIcon class="h-5 w-5" aria-hidden="true" />
-              {profile.email}
-            </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2.5 rounded-md border border-line bg-terminal px-4 py-2.5 text-sm text-ink transition-colors hover:border-accent/60 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            >
-              <LinkedinIcon class="h-5 w-5" aria-hidden="true" />
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </section>
+			<!-- ══════════════ CONTACTO ══════════════ -->
+			<section class="cv-auto mt-20">
+				<CommandLabel id="contacto" command={t.contactCommand} />
+				<div
+					class="reveal rounded-lg border border-line bg-surface p-6 text-center sm:p-10"
+				>
+					<p class="text-lg font-bold text-ink">
+						{t.contactHeading}
+					</p>
+					<p class="mt-2 text-sm text-muted">
+						<span class="text-prompt">&gt;</span>
+						{t.contactSub}
+					</p>
+					<div class="mt-6 flex flex-wrap items-center justify-center gap-4">
+						<a
+							href={`mailto:${profile.email}`}
+							class="flex items-center gap-2.5 rounded-md bg-prompt px-4 py-2.5 text-sm font-bold text-terminal transition-colors hover:bg-prompt/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prompt"
+						>
+							<GmailIcon class="h-5 w-5" aria-hidden="true" />
+							{profile.email}
+						</a>
+						<a
+							href={profile.linkedin}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="flex items-center gap-2.5 rounded-md border border-line bg-terminal px-4 py-2.5 text-sm text-ink transition-colors hover:border-accent/60 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+						>
+							<LinkedinIcon class="h-5 w-5" aria-hidden="true" />
+							LinkedIn
+						</a>
+					</div>
+				</div>
+			</section>
 
-      <!-- ══════════════ FOOTER ══════════════ -->
-      <footer class="cv-auto mt-20 border-t border-line pt-6 text-xs text-muted">
-        <p>
-          <span class="text-prompt">daniel@portfolio</span><span> ~$</span> echo
-          © {new Date().getFullYear()}{" "}{profile.name}
-        </p>
-      </footer>
-    </main>
-  </div>
+			<!-- ══════════════ FOOTER ══════════════ -->
+			<footer
+				class="cv-auto mt-20 border-t border-line pt-6 text-xs text-muted"
+			>
+				<p>
+					<span class="text-prompt">daniel@portfolio</span><span> ~$</span> echo ©
+					{new Date().getFullYear()}{' '}{profile.name}
+				</p>
+			</footer>
+		</main>
+	</div>
 </Layout>
 
 <script>
-  import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
+	import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
 
-  useRevealOnScroll();
+	useRevealOnScroll();
 </script>

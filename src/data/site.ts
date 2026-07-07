@@ -187,7 +187,10 @@ export const tabs: { anchor: string; label: Localized }[] = [
 	{ anchor: '#sobre-mi', label: { es: 'sobre-mi.md', en: 'about-me.md' } },
 	{ anchor: '#stack', label: { es: 'stack.json', en: 'stack.json' } },
 	{ anchor: '#proyectos', label: { es: 'proyectos.ts', en: 'projects.ts' } },
-	{ anchor: '#trayectoria', label: { es: 'trayectoria.log', en: 'career.log' } },
+	{
+		anchor: '#trayectoria',
+		label: { es: 'trayectoria.log', en: 'career.log' },
+	},
 	{ anchor: '#contacto', label: { es: 'contactame.sh', en: 'contact-me.sh' } },
 ];
 

@@ -34,7 +34,13 @@ const ogImageAlt = {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<link rel="preload" as="font" type="font/woff2" href={fontLatin} crossorigin />
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href={fontLatin}
+			crossorigin
+		/>
 
 		<title>{title}</title>
 		<meta name="description" content={description} />
@@ -45,7 +51,11 @@ const ogImageAlt = {
 		<!-- Versiones por idioma: mismo contenido en / (es) y /en/ -->
 		<link rel="alternate" hreflang="es" href={getAbsoluteLocaleUrl('es', '')} />
 		<link rel="alternate" hreflang="en" href={getAbsoluteLocaleUrl('en', '')} />
-		<link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl('es', '')} />
+		<link
+			rel="alternate"
+			hreflang="x-default"
+			href={getAbsoluteLocaleUrl('es', '')}
+		/>
 
 		<!-- Open Graph -->
 		<meta property="og:type" content="website" />
@@ -59,7 +69,6 @@ const ogImageAlt = {
 		<meta property="og:image:alt" content={ogImageAlt} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:image" content={ogImage} />
-
 	</head>
 	<body>
 		<slot />
